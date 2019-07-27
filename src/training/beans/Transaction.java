@@ -1,16 +1,45 @@
 package training.beans;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class Transaction{
+    private int id;
     private BigDecimal amount;
-    private User creator;
+    private String creator;
+    private String groupName;
 
-    public Transaction(BigDecimal amount, User creator) {
+    public Transaction(int id, BigDecimal amount,String creator, String groupName) {
+        this.id = id;
         this.amount = amount;
         this.creator = creator;
+        this.groupName = groupName;
     }
+
+    public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
+	public Transaction() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 
     public BigDecimal getAmount() {
         return amount;
@@ -24,9 +53,15 @@ public class Transaction{
                 '}';
     }
 
-    public User getCreator() {
+    public String getCreator() {
         return creator;
     }
+
+	public void setAmount(BigDecimal bigDecimal) {
+		// TODO Auto-generated method stub
+		this.amount=bigDecimal;
+		
+	}
 
 
 }

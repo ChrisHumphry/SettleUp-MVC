@@ -10,14 +10,15 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean insertUser(User user) {
 
-        String sql = "insert into users values (?,?)";
+        String sql = "insert into users values (?,?,?)";
         GetConnection gc = new GetConnection();
 
         try {
 
             gc.ps = GetConnection.getMysqlConnection().prepareStatement(sql);
-            gc.ps.setInt(1, user.getId());
-            gc.ps.setString(2, user.getName());
+           
+            gc.ps.setString(1, user.getName());
+            gc.ps.setString(2,user.getPassword());
 
             return gc.ps.executeUpdate() > 0;
 
@@ -28,4 +29,29 @@ public class UserDAO implements IUserDAO {
 
         return false;
     }
+
+	@Override
+	public User getUser(String name) {
+		String sql = "select name,password from users where name=?";
+        GetConnection gc=new GetConnection();
+
+        try {
+            gc.ps = GetConnection.getMysqlConnection().prepareStatement(sql);
+            gc.ps.setString(1,name);
+            gc.rs =gc.ps.executeQuery();
+
+            if (gc.rs.next()){
+
+                User user= new User();
+                user.setName(gc.rs.getString("name"));
+                user.setPassword(gc.rs.getString("password"));
+                
+                return user;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return null;
+	}
 }

@@ -10,7 +10,6 @@ import java.util.HashSet;
  */
 public class Group {
 
-    private int id;
     private int noOfUsers;
     private HashSet<User> users;
     private String name;
@@ -31,13 +30,13 @@ public class Group {
                 '}';
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public Group(HashSet<User> users, String name) {
         this.users = users;
@@ -88,7 +87,7 @@ public class Group {
     public void addTxns(Transaction txn) {
         BigDecimal temp = txn.getAmount().divide(new BigDecimal(noOfUsers));
         for (User u : users) {
-            if (!u.getName().equals(txn.getCreator().getName())) {
+            if (!u.getName().equals(txn.getCreator())) {
                 this.map.get(u)[0].add(temp) ;
             }
 
