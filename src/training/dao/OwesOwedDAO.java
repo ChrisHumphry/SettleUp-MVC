@@ -1,8 +1,6 @@
 package training.dao;
 
-import training.beans.Group;
 import training.beans.OwesOwed;
-import training.beans.User;
 import training.standards.IOwesOwedDAO;
 import training.connections.GetConnection;
 

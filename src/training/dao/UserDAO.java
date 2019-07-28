@@ -32,7 +32,7 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public User getUser(String name) {
-		String sql = "select name,password from users where name=?";
+		String sql = "select name,password from user where name=?";
         GetConnection gc=new GetConnection();
 
         try {

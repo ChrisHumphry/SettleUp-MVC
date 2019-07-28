@@ -1,6 +1,5 @@
 package training.dao;
 
-import training.beans.OwesOwed;
 import training.beans.Transaction;
 import training.connections.GetConnection;
 import training.standards.ITransactionDAO;
@@ -12,7 +11,7 @@ import java.util.List;
 public class TransactionDAO implements ITransactionDAO {
     @Override
     public boolean insertTransaction(Transaction transaction) {
-        String sql = "insert into groups values (?,?,?,?)";
+        String sql = "insert into transactions values (?,?,?,?)";
         GetConnection gc = new GetConnection();
 
         try {

@@ -1,7 +1,5 @@
 package training.beans;
 
-import java.util.Objects;
-
 
 public class User {
   

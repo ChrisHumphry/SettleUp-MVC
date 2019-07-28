@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import training.beans.OwesOwed;
 import training.beans.Transaction;
@@ -20,11 +21,13 @@ public class ShowGroups extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
+		session.setAttribute("currentGroup", request.getParameter("gName");
 		List<OwesOwed> owesOwed = new OwesOwedDAO().getOwesOwed(request.getParameter("gName"));
 		List<Transaction> trans = new TransactionDAO().getTransactionsByGroup("gName");
 		String path = "WEB-INF/view/showgroup.jsp";
 		request.setAttribute("Trans", trans);
 		request.setAttribute("OO", owesOwed);
-		request.getRequestDispatcher(path).forward(request, response);
+		request.getRequestDispatcher(path).include(request, response);
 	}
 }

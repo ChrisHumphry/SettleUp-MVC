@@ -1,13 +1,9 @@
 package training.dao;
 
-import training.beans.Group;
-import training.beans.OwesOwed;
 import training.connections.GetConnection;
 import training.standards.IGroupDAO;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GroupDAO implements IGroupDAO {
     @Override

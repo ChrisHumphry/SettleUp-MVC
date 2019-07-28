@@ -8,7 +8,11 @@
 </head>
 <body>
 	<form action="/ShowGroups">
-		Enter a Number <input type = "text", name = "gName"/>
+		Enter group : <input type = "text", name = "gName"/>
+			<input type = "submit" value = "Go"/>
+	</form>
+		<form action="/AddTransaction">
+		Enter group : <input type = "text", name = "amount"/>
 			<input type = "submit" value = "Go"/>
 	</form>
 </body>
