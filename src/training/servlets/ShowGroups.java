@@ -22,7 +22,7 @@ public class ShowGroups extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		session.setAttribute("currentGroup", request.getParameter("gName");
+		session.setAttribute("currentGroup", request.getParameter("gName"));
 		List<OwesOwed> owesOwed = new OwesOwedDAO().getOwesOwed(request.getParameter("gName"));
 		List<Transaction> trans = new TransactionDAO().getTransactionsByGroup("gName");
 		String path = "WEB-INF/view/showgroup.jsp";

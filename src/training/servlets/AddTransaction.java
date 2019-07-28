@@ -15,6 +15,7 @@ import training.beans.OwesOwed;
 import training.beans.Transaction;
 import training.beans.User;
 import training.dao.OwesOwedDAO;
+import training.dao.TransactionDAO;
 import training.standards.IOwesOwedDAO;
 import training.standards.ITransactionDAO;
 
@@ -24,14 +25,14 @@ public class AddTransaction extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true); 
-		User currentUser = (User (session.getAttribute("currentSessionUser"));
-		String gName = session.getAttribute("currentGroup");
-		int amount = request.getParameter("amount");
+		User currentUser = new User((User)(session.getAttribute("currentSessionUser")));
+		String gName = (String) session.getAttribute("currentGroup");
+		BigDecimal amount = new BigDecimal(request.getParameter("amount"));
 		ITransactionDAO transDAO = new TransactionDAO();
 		transDAO.insertTransaction(new Transaction(5, amount, currentUser.getName(), gName));
 		List<OwesOwed> groupMembers = new OwesOwedDAO().getOwesOwed(gName);
 		int noOfMembers = groupMembers.size();
-		BigDecimal split = amount/noOfMembers;
+		BigDecimal split = amount.divide(noOfMembers);
 		for(OwesOwed temp : groupMembers) {
 			if(temp.getUserName().equals(currentUser.getName())) {
 				temp.setOwed(temp.getOwed() + amount - split);
